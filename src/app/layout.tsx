@@ -1,0 +1,36 @@
+import type { Metadata } from 'next';
+import { Geist, Geist_Mono } from 'next/font/google';
+import './globals.css';
+import { Providers } from '@/components/common/Providers';
+import ThemeWrapper from '@/components/layout/ThemeWrapper';
+
+const geistSans = Geist({
+  variable: '--font-geist-sans',
+  subsets: ['latin'],
+});
+
+const geistMono = Geist_Mono({
+  variable: '--font-geist-mono',
+  subsets: ['latin'],
+});
+
+export const metadata: Metadata = {
+  title: 'TodoFlow',
+  description: '실시간 할 일 관리 앱',
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="ko" className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body>
+        <Providers>
+          <ThemeWrapper>{children}</ThemeWrapper>
+        </Providers>
+      </body>
+    </html>
+  );
+}
